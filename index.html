@@ -60,7 +60,7 @@ body {
 
 h1 { font-size: 22px; }
 
-#message, #final {
+#message, #final, #namePrompt {
   font-size: 18px;
   line-height: 1.5;
 }
@@ -85,16 +85,37 @@ button:hover { background: #ff1493; }
   50% { transform: scale(1.03); }
   100% { transform: scale(1); }
 }
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  width: 60%;
+  max-width: 200px;
+  text-align: center;
+}
   </style>
 </head>
 <body>
 
 <div class="card">
   <h1>💋 Valentine Mode Activated 💋</h1>
-  <p id="message">Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️</p>
 
-  <button id="btn" onclick="next()">Συνέχεια</button>
+  <!-- Validation για όνομα -->
+  <p id="namePrompt">
+    Γράψε το όνομα σου για να συνεχίσεις: <br><br>
+    <input type="text" id="username" placeholder="Το όνομα σου" />
+    <br><br>
+    <button id="nameBtn" onclick="checkName()">Συνέχεια</button>
+    <p id="nameError" style="color:yellow; display:none; margin-top:10px;">Λάθος όνομα! Δοκίμασε ξανά 😘</p>
+  </p>
 
+  <!-- Μηνύματα μετά το όνομα -->
+  <p id="message" class="hidden">Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️</p>
+  <button id="btn" onclick="next()" class="hidden">Συνέχεια</button>
+
+  <!-- Τελικό μήνυμα -->
   <p id="final" class="hidden">
     Μικρή μου…  
     <br><br>
@@ -127,7 +148,6 @@ button:hover { background: #ff1493; }
 </div>
 
 <script>
-  // Μηνύματα με κουμπί συνέχεια
   const messages = [
     "Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️",
     "Σφάλμα: Υπερχείλιση καρδιάς 💓 (αιτία: εσύ)",
@@ -142,9 +162,26 @@ button:hover { background: #ff1493; }
   const finalEl = document.getElementById("final");
   const btn = document.getElementById("btn");
 
+  // Έλεγχος ονόματος
+  function checkName() {
+    const nameInput = document.getElementById("username").value.trim();
+    const errorEl = document.getElementById("nameError");
+
+    if(nameInput === "Τζενη" || nameInput === "Τζένη" || nameInput === "τζένη" || nameInput === "τζενη") {
+      document.getElementById("namePrompt").classList.add("hidden");
+      msgEl.textContent = messages[0];
+      msgEl.classList.remove("hidden");
+      btn.classList.remove("hidden");
+      errorEl.style.display = "none";
+    } else {
+      errorEl.style.display = "block";
+    }
+  }
+
+  // Μηνύματα με κουμπί συνέχεια
   function next() {
     i++;
-    if (i < messages.length) {
+    if(i < messages.length) {
       msgEl.textContent = messages[i];
     } else {
       msgEl.classList.add("hidden");
@@ -153,7 +190,7 @@ button:hover { background: #ff1493; }
     }
   }
 
-  // Καρδιές background
+  // Καρδιές στο background
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -173,7 +210,7 @@ button:hover { background: #ff1493; }
       h.textContent = "♥";
       h.style.left = 10 + Math.random() * 80 + "vw";
       h.style.top = 10 + Math.random() * 60 + "vh";
-      h.style.fontSize = 30 + Math.random() * 50 + "px"; // μεγάλες καρδιές
+      h.style.fontSize = 30 + Math.random() * 50 + "px";
       h.style.animationDuration = 3 + Math.random() * 3 + "s";
       document.body.appendChild(h);
       setTimeout(() => h.remove(), 10000);
@@ -182,14 +219,14 @@ button:hover { background: #ff1493; }
 
   // Εμφάνιση καρδιών και κουμπιού όταν εμφανιστεί το τελικό μήνυμα
   const observer = new MutationObserver(() => {
-    if (!finalEl.classList.contains("hidden")) {
+    if(!finalEl.classList.contains("hidden")) {
       spawnFinalHearts();
       document.getElementById("surpriseBtn").classList.remove("hidden");
     }
   });
   observer.observe(finalEl, { attributes: true, attributeFilter: ['class'] });
 
-  // Λειτουργία κουμπιού έκπληξη
+  // Κουμπί έκπληξη
   function revealSurprise() {
     const card = document.querySelector(".card");
     card.innerHTML = `
@@ -197,11 +234,12 @@ button:hover { background: #ff1493; }
       <p style="font-size:18px; line-height:1.5;">
         Σε προσκαλώ το βράδυ σε δείπνο 🍽️✨<br>
         Ντύσου καλά 👗👔 και φόρα τα καλά σου 👠💄!!<br>
-	Θα περάσω να σε πάρω στις 21:00!!<br>
+        Θα περάσω να σε πάρω στις 21:00!!<br>
         Ανυπομονώ 😘❤️
       </p>
     `;
   }
+
 </script>
 
 </body>
