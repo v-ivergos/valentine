@@ -8,7 +8,6 @@
   <style>
 body {
   margin: 0;
-  /* overflow: hidden; */  /* αφαιρέθηκε */
   background: linear-gradient(135deg, #ff3e7f, #ff9a9e);
   background-attachment: fixed;
   background-size: cover;
@@ -18,176 +17,192 @@ body {
   padding: 20px;
 }
 
+/* Καρδιές background */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: rgba(255,0,0,0.35);
+  font-size: 18px;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
 
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
 
-    /* Καρδιές background */
-    .heart {
-      position: fixed;
-      top: -10px;
-      color: rgba(255,0,0,0.35);
-      font-size: 18px;
-      animation: fall linear infinite;
-      pointer-events: none;
-    }
+/* Καρδιές τελικού μηνύματος */
+.final-heart {
+  color: red;
+  display: inline-block;
+  animation: heartbeat 1s infinite;
+  margin: 0 2px;
+}
 
-    @keyframes fall {
-      to { transform: translateY(110vh); }
-    }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+}
 
-    /* Καρδιές τελικού μηνύματος */
-    .final-heart {
-      color: red;
-      display: inline-block;
-      animation: heartbeat 1s infinite;
-      margin: 0 2px;
-    }
+.card {
+  position: relative;
+  z-index: 2;
+  background: rgba(0,0,0,0.35);
+  border-radius: 25px;
+  padding: 20px;
+  max-width: 95vw;
+  margin: 40px auto;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  animation: pulse 2s infinite;
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.3); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.2); }
-    }
+h1 { font-size: 22px; }
 
-    .card {
-      position: relative;
-      z-index: 2;
-      background: rgba(0,0,0,0.35);
-      border-radius: 25px;
-      padding: 20px;
-      max-width: 95vw;
-      margin: 40px auto;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
-      animation: pulse 2s infinite;
-    }
+#message, #final {
+  font-size: 18px;
+  line-height: 1.5;
+}
 
-    h1 { font-size: 22px; }
+button {
+  background: #ff69b4;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  color: #fff;
+}
 
-    #message, #final {
-      font-size: 18px;
-      line-height: 1.5;
-    }
+button:hover { background: #ff1493; }
 
-    button {
-      background: #ff69b4;
-      border: none;
-      padding: 14px 26px;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 20px;
-      color: #fff;
-    }
+.hidden { display: none; }
 
-    button:hover { background: #ff1493; }
-
-    .hidden { display: none; }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>💋 Valentine Mode Activated 💋</h1>
-    <p id="message">Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️</p>
+<div class="card">
+  <h1>💋 Valentine Mode Activated 💋</h1>
+  <p id="message">Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️</p>
 
-    <button id="btn" onclick="next()">Συνέχεια</button>
+  <button id="btn" onclick="next()">Συνέχεια</button>
 
-    <p id="final" class="hidden">
-      Μικρή μου…  
-      <br><br>
-      Κάθε φορά που σε κοιτάω,  
-      ο κόσμος πατάει pause  
-      και η καρδιά μου κάνει μόνο ένα πράγμα:  
-	<br><br>
-      <strong>
-        <span class="final-heart">♥</span>
-	Σ
-        Ε
-        <span class="final-heart">♥</span>
-        Θ
-        Ε
-        Λ
-        Ε
-        Ι
-        <span class="final-heart">♥</span>
-      </strong>  
-      <br><br>
-      Μωρό μου…  
-      θέλω να είσαι το πιο ωραίο μου χάος,
-      ο λόγος που χαμογελάω χωρίς λόγο,  
-      και η πιο όμορφη συνήθεια της ζωής μου.  
-      <br><br>
-      <span class="final-heart" >♥</span> Χρόνια μας πολλά μωράκι μου 😘 <span class="final-heart">♥</span>
-    </p>
-  </div>
+  <p id="final" class="hidden">
+    Μικρή μου…  
+    <br><br>
+    Κάθε φορά που σε κοιτάω,  
+    ο κόσμος πατάει pause  
+    και η καρδιά μου κάνει μόνο ένα πράγμα:  
+    <br><br>
+    <strong>
+      <span class="final-heart">♥</span>
+      Σ
+      Ε
+      <span class="final-heart">♥</span>
+      Θ
+      Ε
+      Λ
+      Ε
+      Ι
+      <span class="final-heart">♥</span>
+    </strong>  
+    <br><br>
+    Μωρό μου…  
+    θέλω να είσαι το πιο ωραίο μου χάος,
+    ο λόγος που χαμογελάω χωρίς λόγο,  
+    και η πιο όμορφη συνήθεια της ζωής μου.  
+    <br><br>
+    <span class="final-heart">♥</span> Χρόνια μας πολλά μωράκι μου 😘 <span class="final-heart">♥</span>
+    <br><br>
+    <button id="surpriseBtn" class="hidden" onclick="revealSurprise()">Φανέρωσε την εκπληξη 🎁</button>
+  </p>
+</div>
 
-  <script>
-    // Μηνύματα με κουμπί συνέχεια
-    const messages = [
-      "Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️",
-      "Σφάλμα: Υπερχείλιση καρδιάς 💓 (αιτία: εσύ)",
-      "Εντοπίστηκε υπερβολική γοητεία 😏",
-      "Προειδοποίηση: κίνδυνος εθισμού σε εσένα 😈",
-      "Σύνδεση με το μωράκι μου... επιτυχής 💕",
-      "Φόρτωση φιλιών... αγκαλιών... χαμόγελων 😘"
-    ];
+<script>
+  // Μηνύματα με κουμπί συνέχεια
+  const messages = [
+    "Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️",
+    "Σφάλμα: Υπερχείλιση καρδιάς 💓 (αιτία: εσύ)",
+    "Εντοπίστηκε υπερβολική γοητεία 😏",
+    "Προειδοποίηση: κίνδυνος εθισμού σε εσένα 😈",
+    "Σύνδεση με το μωράκι μου... επιτυχής 💕",
+    "Φόρτωση φιλιών... αγκαλιών... χαμόγελων 😘"
+  ];
 
-    let i = 0;
-    const msgEl = document.getElementById("message");
-    const finalEl = document.getElementById("final");
-    const btn = document.getElementById("btn");
+  let i = 0;
+  const msgEl = document.getElementById("message");
+  const finalEl = document.getElementById("final");
+  const btn = document.getElementById("btn");
 
-    function next() {
-      i++;
-      if (i < messages.length) {
-        msgEl.textContent = messages[i];
-      } else {
-        msgEl.classList.add("hidden");
-        btn.classList.add("hidden");
-        finalEl.classList.remove("hidden");
-      }
+  function next() {
+    i++;
+    if (i < messages.length) {
+      msgEl.textContent = messages[i];
+    } else {
+      msgEl.classList.add("hidden");
+      btn.classList.add("hidden");
+      finalEl.classList.remove("hidden");
     }
-
-    // καρδιές στο background
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "♥";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
-      heart.style.fontSize = 12 + Math.random() * 20 + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }, 400);
-
-    // καρδιές πάνω από το τελικό μήνυμα σαν confetti
-function spawnFinalHearts() {
-  for (let j = 0; j < 25; j++) {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.textContent = "♥";
-    h.style.left = 10 + Math.random() * 80 + "vw";
-    h.style.top = 10 + Math.random() * 60 + "vh";
-    h.style.fontSize = 30 + Math.random() * 50 + "px"; // πολύ μεγάλες καρδιές
-    h.style.animationDuration = 3 + Math.random() * 3 + "s";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 10000);
   }
-}
 
-    // ενεργοποίηση καρδιών όταν εμφανιστεί το τελικό μήνυμα
-    const observer = new MutationObserver(() => {
-      if (!finalEl.classList.contains("hidden")) spawnFinalHearts();
-    });
-    observer.observe(finalEl, { attributes: true, attributeFilter: ['class'] });
+  // Καρδιές background
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "♥";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+    heart.style.fontSize = 12 + Math.random() * 20 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }, 400);
 
-  </script>
+  // Καρδιές τελικού μηνύματος
+  function spawnFinalHearts() {
+    for (let j = 0; j < 25; j++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "♥";
+      h.style.left = 10 + Math.random() * 80 + "vw";
+      h.style.top = 10 + Math.random() * 60 + "vh";
+      h.style.fontSize = 30 + Math.random() * 50 + "px"; // μεγάλες καρδιές
+      h.style.animationDuration = 3 + Math.random() * 3 + "s";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 10000);
+    }
+  }
+
+  // Εμφάνιση καρδιών και κουμπιού όταν εμφανιστεί το τελικό μήνυμα
+  const observer = new MutationObserver(() => {
+    if (!finalEl.classList.contains("hidden")) {
+      spawnFinalHearts();
+      document.getElementById("surpriseBtn").classList.remove("hidden");
+    }
+  });
+  observer.observe(finalEl, { attributes: true, attributeFilter: ['class'] });
+
+  // Λειτουργία κουμπιού έκπληξη
+  function revealSurprise() {
+    const card = document.querySelector(".card");
+    card.innerHTML = `
+      <h1>💌 Έκπληξη 💌</h1>
+      <p style="font-size:18px; line-height:1.5;">
+        Σε προσκαλώ το βράδυ σε δείπνο 🍽️✨<br>
+        Ντύσου καλά 👗👔 και φόρα τα καλά σου 👠💄!!<br>
+	Θα περάσω να σε πάρω στις 21:00!!<br>
+        Ανυπομονώ 😘❤️
+      </p>
+    `;
+  }
+</script>
 
 </body>
 </html>
