@@ -2,32 +2,53 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Για το μωράκι μου ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ff3e7f, #ff9a9e);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      color: white;
-      padding: 40px;
-    }
 
-    /* καρδιές */
+  <style>
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #ff3e7f, #ff9a9e);
+  background-attachment: fixed; /* κρατάει το gradient σταθερό */
+  background-size: cover; /* γεμίζει πάντα όλη την οθόνη */
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+
+
+    /* Καρδιές background */
     .heart {
       position: fixed;
       top: -10px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,0,0,0.35);
       font-size: 18px;
       animation: fall linear infinite;
       pointer-events: none;
     }
 
     @keyframes fall {
-      to {
-        transform: translateY(110vh);
-      }
+      to { transform: translateY(110vh); }
+    }
+
+    /* Καρδιές τελικού μηνύματος */
+    .final-heart {
+      color: red;
+      display: inline-block;
+      animation: heartbeat 1s infinite;
+      margin: 0 2px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.2); }
     }
 
     .card {
@@ -35,11 +56,18 @@
       z-index: 2;
       background: rgba(0,0,0,0.35);
       border-radius: 25px;
-      padding: 30px;
-      max-width: 420px;
-      margin: auto;
+      padding: 20px;
+      max-width: 95vw;
+      margin: 40px auto;
       box-shadow: 0 0 30px rgba(0,0,0,0.4);
       animation: pulse 2s infinite;
+    }
+
+    h1 { font-size: 22px; }
+
+    #message, #final {
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     button {
@@ -53,9 +81,7 @@
       color: #fff;
     }
 
-    button:hover {
-      background: #ff1493;
-    }
+    button:hover { background: #ff1493; }
 
     .hidden { display: none; }
 
@@ -69,7 +95,7 @@
 <body>
 
   <div class="card">
-    <h1>💋 Powerpuff Valentine Mode 💋</h1>
+    <h1>💋 Valentine Mode Activated 💋</h1>
     <p id="message">Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️</p>
 
     <button id="btn" onclick="next()">Συνέχεια</button>
@@ -77,33 +103,42 @@
     <p id="final" class="hidden">
       Μικρή μου…  
       <br><br>
-      είσαι πιο δυνατή κι από Powerpuff,  
-      πιο εκρηκτική κι από την κόκκινη,  
-      και πιο γλυκιά απ’ όλο τον κόσμο 😌  
-      <br><br>
       Μωράκι μου…  
       κάθε φορά που σε κοιτάω,  
       ο κόσμος πατάει pause  
       και η καρδιά μου κάνει μόνο ένα πράγμα:  
-      <strong>σ’ αγαπάει.</strong>  
+	<br><br>
+      <strong>
+        <span class="final-heart">♥</span>
+	Σ
+        Ε
+        <span class="final-heart">♥</span>
+        Θ
+        Ε
+        Λ
+        Ε
+        Ι
+        <span class="final-heart">♥</span>
+      </strong>  
       <br><br>
       Μωρό μου…  
-      θέλω να είσαι το σπίτι μου, το γέλιο μου,  
+      θέλω να είσαι το πιο ωραίο μου χάος,
+      ο λόγος που χαμογελάω χωρίς λόγο,  
       και η πιο όμορφη συνήθεια της ζωής μου.  
       <br><br>
-      💖 Χρόνια μας πολλά, αγάπη μου. 💖
+      <span class="final-heart" >♥</span> Χρόνια μας πολλά μωράκι μου 😘 <span class="final-heart">♥</span>
     </p>
   </div>
 
   <script>
-    // μηνύματα
+    // Μηνύματα με κουμπί συνέχεια
     const messages = [
       "Σάρωση επιτυχής... ενεργοποίηση καρδιάς ❤️",
       "Σφάλμα: Υπερχείλιση καρδιάς 💓 (αιτία: εσύ)",
-      "Powerpuff energy detected 💥",
-      "Η κόκκινη Powerpuff ζήλεψε τη φωτιά σου 😏",
-      "Εγκατάσταση φιλιά... φόρτωση αγκαλιών... 😘",
-      "Προειδοποίηση: είσαι εθιστική και επικίνδυνα γλυκιά 😈"
+      "Εντοπίστηκε υπερβολική γοητεία 😏",
+      "Προειδοποίηση: κίνδυνος εθισμού σε εσένα 😈",
+      "Σύνδεση με το μωράκι μου... επιτυχής 💕",
+      "Φόρτωση φιλιών... αγκαλιών... χαμόγελων 😘"
     ];
 
     let i = 0;
@@ -122,7 +157,7 @@
       }
     }
 
-    // καρδιές background
+    // καρδιές στο background
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -130,11 +165,31 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = 5 + Math.random() * 5 + "s";
       heart.style.fontSize = 12 + Math.random() * 20 + "px";
-
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 10000);
     }, 400);
+
+    // καρδιές πάνω από το τελικό μήνυμα σαν confetti
+function spawnFinalHearts() {
+  for (let j = 0; j < 25; j++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = "♥";
+    h.style.left = 10 + Math.random() * 80 + "vw";
+    h.style.top = 10 + Math.random() * 60 + "vh";
+    h.style.fontSize = 30 + Math.random() * 50 + "px"; // πολύ μεγάλες καρδιές
+    h.style.animationDuration = 3 + Math.random() * 3 + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 10000);
+  }
+}
+
+    // ενεργοποίηση καρδιών όταν εμφανιστεί το τελικό μήνυμα
+    const observer = new MutationObserver(() => {
+      if (!finalEl.classList.contains("hidden")) spawnFinalHearts();
+    });
+    observer.observe(finalEl, { attributes: true, attributeFilter: ['class'] });
+
   </script>
 
 </body>
